@@ -1,0 +1,18 @@
+# build output
+DockPin.app/
+*.o
+
+# one-off probes used while developing (not part of the tool)
+probe
+probe2
+calib
+docktest
+movetest
+probe.swift
+probe2.swift
+calib.swift
+docktest.swift
+movetest.swift
+
+# macOS
+.DS_Store
