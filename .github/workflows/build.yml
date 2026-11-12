@@ -1,0 +1,41 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: swiftc build
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Toolchain
+        run: |
+          sw_vers
+          swift --version
+
+      - name: Build
+        run: ./build.sh
+
+      - name: Verify bundle
+        run: |
+          plutil -lint DockPin.app/Contents/Info.plist
+          test -x DockPin.app/Contents/MacOS/DockPin
+          codesign --verify --deep --strict DockPin.app
+          file DockPin.app/Contents/MacOS/DockPin
+          lipo -info DockPin.app/Contents/MacOS/DockPin
+
+      - name: Upload DockPin.app
+        uses: actions/upload-artifact@v4
+        with:
+          name: DockPin-app
+          path: DockPin.app
+          if-no-files-found: error
+          retention-days: 14

@@ -1,5 +1,7 @@
 # DockPin
 
+[![build](https://github.com/tuean/dockpin/actions/workflows/build.yml/badge.svg)](https://github.com/tuean/dockpin/actions/workflows/build.yml)
+
 **Keep the macOS Dock on the display you choose — it stops wandering to other screens.**
 
 一个原生 Swift 写的菜单栏小工具：把 Dock 钉死在你指定的那块屏幕上，其他屏再怎么蹭底边也招不走它；睡眠唤醒、插拔显示器之后如果 Dock 落到了错的屏，还会自动把它拉回来。
